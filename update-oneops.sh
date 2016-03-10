@@ -16,6 +16,7 @@ oneops auth login<<EOF
 $OO_USER
 $OO_PW
 EOF
+oneops config set site=${OO_URL} -g
 oneops config set organization=AFC -g
 oneops config set format=json -g
 
