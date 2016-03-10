@@ -16,6 +16,8 @@ oneops auth login<<EOF
 $OO_USER
 $OO_PW
 EOF
+oneops config set organization=AFC -g
+oneops config set format=json -g
 
 # set OO_COMPONENT version to OO_COMPONENT_VERSION
 oneops design component update -a ${OO_ASSEMBLY} -p ${OO_PLATFORM} -c ${OO_COMPONENT} version=${OO_COMPONENT_VERSION}
