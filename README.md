@@ -1,2 +1,1 @@
-# oneops-sample-custom-component
-Something that OneOps can build and deploy
+This repo is a stub maven project producing a jar with one markdown file in it
