@@ -1,11 +1,21 @@
 #!/bin/bash -xeu
 
+# pass credentials on the command line
+OO_USER=$1
+OO_PW=$2
+
 OO_ASSEMBLY=JustAJar
 OO_ENVIRONMENT=TEST1
 OO_PLATFORM=JarPlatform
 OO_COMPONENT=jartifact
 OO_COMPONENT_VERSION=3
 BUILD_TAG=${BUILD_TAG:="none"}
+
+# Login to OneOps
+oneops auth login<<EOF
+$OO_USER
+$OO_PW
+EOF
 
 # set OO_COMPONENT version to OO_COMPONENT_VERSION
 oneops design component update -a ${OO_ASSEMBLY} -p ${OO_PLATFORM} -c ${OO_COMPONENT} version=${OO_COMPONENT_VERSION}
