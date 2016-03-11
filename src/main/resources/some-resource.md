@@ -5,3 +5,4 @@ This file came out of a [git repo](https://github.com/masterofless/oneops-sample
 some server on a OneOps-managed AWS vm.
 
 As you change things, the checksum changes...
+Even the smallest change.
