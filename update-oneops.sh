@@ -1,10 +1,12 @@
 #!/bin/bash -xeu
 
+# Use the OneOps CLI and some env vars to update the OneOps artifact version, etc.
+# and trigger a deployment
+
 OO_ASSEMBLY=${OO_ASSEMBLY:=JustAJar}
 OO_ENVIRONMENT=${OO_ENVIRONMENT:=TEST1}
 OO_PLATFORM=${OO_PLATFORM:=JarPlatform}
 OO_COMPONENT=${OO_COMPONENT:=jartifact}
-OO_COMPONENT_VERSION=${OO_COMPONENT_VERSION:=3}
 BUILD_TAG=${BUILD_TAG:="none"}
 
 # Login to OneOps
@@ -16,17 +18,17 @@ EOF
 oneops config set organization=AFC -g
 oneops config set format=json -g
 
-# set OO_COMPONENT version to OO_COMPONENT_VERSION
-oneops design component update -a ${OO_ASSEMBLY} -p ${OO_PLATFORM} -c ${OO_COMPONENT} version=${OO_COMPONENT_VERSION}
+# set checksum
+oneops design component update -a ${OO_ASSEMBLY} -p ${OO_PLATFORM} -c ${OO_COMPONENT} checksum=${OO_CHECKSUM}
 
 # then commit the design
-oneops design commit -a ${OO_ASSEMBLY} --comment "design commit from Jenkins ${BUILD_TAG} via OO CLI"
+oneops design commit -a ${OO_ASSEMBLY} --comment "Jenkins build ${BUILD_TAG}"
 
-# then a pull
+# pull design
 oneops transition pull -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT}
 
-# then commit the deployment
-oneops transition commit -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT} -c "Committed transition via CLI"
+# commit the release
+oneops transition commit -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT} -c "Jenkins build ${BUILD_TAG}"
 
 # execute deployment
 oneops transition deployment create -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT}

@@ -7,14 +7,14 @@
     <distributionManagement>
         <repository>
             <id>abt_releases</id>
-            <url>http://nexus.andybuildsthings.fail:8181/nexus/content/repositories/afc_releases/</url>
+            <url>http://nexus.andybuildsthings.fail:8181/nexus/content/repositories/abt_releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
         </repository>
         <snapshotRepository>
             <id>abt_snapshots</id>
-            <url>http://nexus.andybuildsthings.fail:8181/nexus/content/repositories/afctest</url>
+            <url>http://nexus.andybuildsthings.fail:8181/nexus/content/repositories/abt_snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
