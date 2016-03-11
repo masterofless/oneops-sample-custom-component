@@ -55,36 +55,36 @@
   <prebuilders/>
   <postbuilders>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash -xeu
+      <command>#!/bin/bash -eu
 
 JAR=`ls target/sample-artifact*.jar | head -1`
 export OO_CHECKSUM=`sha256sum $JAR | perl -pe &apos;s/ .*//&apos;`
 
-rvm-shell &lt;&lt;EOF
+rvm-shell -exu &lt;&lt;EOF
 
 # Login to OneOps
 oneops config set site=http://192.168.53.2:9090/ -g
-oneops auth login&lt;&lt;EOF
+oneops auth login&lt;&lt;EOA
 afc
 afcafc
-EOF
+EOA
 oneops config set organization=AFC -g
 oneops config set format=json -g
 
 # set checksum
-oneops design component update -a ${OO_ASSEMBLY} -p ${OO_PLATFORM} -c ${OO_COMPONENT} checksum=${OO_CHECKSUM}
+oneops design component update -a JustAJar -p JarPlatform -c jartifact checksum=${OO_CHECKSUM}
 
 # then commit the design
-oneops design commit -a ${OO_ASSEMBLY} --comment &quot;Jenkins build ${BUILD_TAG}&quot;
+oneops design commit -a JustAJar --comment &quot;Jenkins build ${BUILD_TAG}&quot;
 
 # pull design
-oneops transition pull -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT}
+oneops transition pull -a JustAJar -e TEST1
 
 # commit the release
-oneops transition commit -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT} -c &quot;Jenkins build ${BUILD_TAG}&quot;
+oneops transition commit -a JustAJar -e TEST1 -c &quot;Jenkins build ${BUILD_TAG}&quot;
 
 # execute deployment
-oneops transition deployment create -a ${OO_ASSEMBLY} -e ${OO_ENVIRONMENT}
+oneops transition deployment create -a JustAJar -e TEST1
 
 EOF
 </command>
