@@ -1,9 +1,14 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>Sample OneOps Artifact</name>
     <groupId>com.avalonconsult.oneops.afc</groupId>
     <artifactId>sample-artifact</artifactId>
-    <version>2-SNAPSHOT</version>
+    <version>3-SNAPSHOT</version>
+    <scm>
+        <connection>scm:git:https://github.com/masterofless/oneops-sample-custom-component.git</connection>
+        <developerConnection>scm:git:https://github.com/masterofless/oneops-sample-custom-component.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <distributionManagement>
         <repository>
             <id>abt_releases</id>
