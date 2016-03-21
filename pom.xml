@@ -3,7 +3,7 @@
     <name>Sample OneOps Artifact</name>
     <groupId>com.avalonconsult.oneops.afc</groupId>
     <artifactId>sample-artifact</artifactId>
-    <version>3-SNAPSHOT</version>
+    <version>4-SNAPSHOT</version>
     <scm>
         <connection>scm:git:https://github.com/masterofless/oneops-sample-custom-component.git</connection>
         <developerConnection>scm:git:https://github.com/masterofless/oneops-sample-custom-component.git</developerConnection>
