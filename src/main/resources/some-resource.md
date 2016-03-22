@@ -6,6 +6,6 @@ some server on a OneOps-managed AWS vm.
 
 As you change things, the checksum changes...
 Even the smallest change.
-at beginning of video
 
-I wrote this line during the video while deployments happened
+before beginning video
+
